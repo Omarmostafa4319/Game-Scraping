@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrapy Game Data and Excel Downloader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        #urlInput {
+            width: 80%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        #downloadButton {
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Scrapy Excel Downloader</h1>
+
+    <form id="urlForm">
+        <label for="urlInput">Enter The URL:</label>
+        <input type="text" id="urlInput" placeholder="Enter URL...">
+        <br>
+        <button type="button" onclick="downloadExcel()">Download Excel</button>
+    </form>
+
+    <script>
+        function downloadExcel() {
+            var url = document.getElementById('urlInput').value;
+
+            // Check if the URL is not empty
+            if (url.trim() === "") {
+                alert("Please enter a valid URL.");
+                return;
+            }
+
+            // Create a FormData object to send data to the server
+            var formData = new FormData();
+            formData.append('url', url);
+
+            // Send a POST request to the server
+            fetch('/download_excel', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.blob()) // convert response to a blob
+                .then(blob => {
+                    // Create a link element and trigger download
+                    let link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = "Scouting_Full_Notes_VIP.xlsx";
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                })
+                .catch(error => {
+                    // Handle errors (e.g., show an error message)
+                    alert("An error occurred while downloading the Excel sheet.");
+                });
+        }
+
+    </script>
+
+</body>
+
+</html>

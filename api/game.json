@@ -1,0 +1,61 @@
+[
+    {
+        "Game_Date": "27.08.23",
+        "Team_1_Name": "Eintracht Norderstedt",
+        "Team_2_Name": "Holstein Kiel II",
+        "Team_1_ID": "117",
+        "Players_Team_1": [
+            "Lars Huxsohl",
+            "Moritz Frahm",
+            "Kevin Kling",
+            "Dane Kummerfeld",
+            "Juri Marxen",
+            "Ersin Zehir",
+            "Jonas Behounek",
+            "Philipp Koch",
+            "Nick Gutmann",
+            "Nick Selutin",
+            "Kevin Prinz Von Anhalt"
+        ],
+        "Players_Team_1_IDs": [
+            "292515",
+            "337086",
+            "467195",
+            "94006",
+            "259866",
+            "275127",
+            "270159",
+            "108889",
+            "236973",
+            "467721",
+            "232164"
+        ],
+        "Team_2_ID": "1171",
+        "Players_Team_2": [
+            "Noah Oberbeck",
+            "David Lelle",
+            "Stefan Rankic",
+            "Nico Carrera",
+            "Lasse Rosenboom",
+            "Jannis Voss",
+            "Noah Gumpert",
+            "Aurel Wagbe",
+            "Stanislav Fehler",
+            "Niklas Niehoff",
+            "Laurynas Kulikas"
+        ],
+        "Players_Team_2_IDs": [
+            "591882",
+            "574199",
+            "501958",
+            "674500",
+            "512352",
+            "296880",
+            "695933",
+            "747983",
+            "602197",
+            "806073",
+            "94548"
+        ]
+    }
+]
