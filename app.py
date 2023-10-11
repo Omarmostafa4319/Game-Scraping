@@ -4,7 +4,7 @@ import multiprocessing
 import json
 
 from scrapy.crawler import CrawlerProcess
-from Scraper.transfermarkt_de import TransferMarktDe
+from scraper.transfermarkt_de import TransferMarktDe
 import pandas as pd
 
 app = Flask(__name__)
