@@ -122,5 +122,5 @@ def download_excel():
 
 
 if __name__ == "__main__":
-    app.run(debug=False, host="0.0.0.0", port=5000)
+    app.run(debug=True)
     print("+-" * 20 + "Excel sheet created successfully!" + "+-" * 20)
