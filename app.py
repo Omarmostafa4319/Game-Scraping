@@ -51,12 +51,11 @@ def download_excel():
     # Run the spider in a separate process
     process = multiprocessing.Process(target=run_spider_in_process, args=(url,))
     process.start()
-    process.join()  # Wait for the subprocess to finish
+    process.join()
 
     # Call your existing functions to generate Excel file
     Game_Data = read_data(json_name="game")
 
-    # ... (rest of your existing code)
     # Game Date
     Game_Date = Game_Data["Game_Date"]
 
@@ -102,6 +101,10 @@ def download_excel():
     df_2 = pd.DataFrame(data_2)
 
     # Save the tables to Excel sheets
+    Team_1_Name = Team_1_Name.replace("/", " ")
+    Team_2_Name = Team_2_Name.replace("/", " ")
+    Game_Date = Game_Date.replace("/", ".")
+
     output = BytesIO()
     with pd.ExcelWriter(output) as writer:
         df_1.to_excel(
@@ -117,7 +120,9 @@ def download_excel():
 
     output.seek(0)
     return send_file(
-        output, as_attachment=True, download_name="Scouting_Full_Notes_VIP.xlsx"
+        output,
+        as_attachment=True,
+        download_name=f"{Team_1_Name}_VS_{Team_2_Name}_{Game_Date}.xlsx",
     )
 
 

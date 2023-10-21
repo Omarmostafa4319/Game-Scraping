@@ -55,12 +55,27 @@
                 method: 'POST',
                 body: formData
             })
-                .then(response => response.blob()) // convert response to a blob
-                .then(blob => {
-                    // Create a link element and trigger download
+                .then(response => {
+                    // Extract filename from the response headers
+                    const contentDisposition = response.headers.get('Content-Disposition');
+                    let filename = "Scouting_Full_Notes_VIP.xlsx";  // default filename
+                    if (contentDisposition) {
+                        const matches = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
+                        if (matches != null && matches[1]) {
+                            filename = matches[1].replace(/['"]/g, '');
+                        }
+                    }
+
+                    // Convert the response to a blob
+                    return response.blob().then(blob => {
+                        return { blob, filename };
+                    });
+                })
+                .then(data => {
+                    // Use the extracted filename to create the download link
                     let link = document.createElement('a');
-                    link.href = window.URL.createObjectURL(blob);
-                    link.download = "Scouting_Full_Notes_VIP.xlsx";
+                    link.href = window.URL.createObjectURL(data.blob);
+                    link.download = data.filename;
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
@@ -70,6 +85,7 @@
                     alert("An error occurred while downloading the Excel sheet.");
                 });
         }
+
 
     </script>
 
